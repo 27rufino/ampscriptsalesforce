@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ </head> 
+ <body> 
+%%[ // You must insert this code snippet to recognize the variable first name inside the <body> tag in the html
+  SET @FullName = CLIE_NM_CLIENTE // Choose the attribute of your table that is defined for names os the subscribers (Change this = CLIE_NM_CLIENTE )
+  SET @WhiteSpacePos = IndexOf(@FullName, ' ')
+  SET @FirstNamePos = Subtract(@WhiteSpacePos, 1)
+
+  IF @FirstNamePos > 0 THEN
+    SET @FirstName = Substring(@FullName, 0, @FirstNamePos)
+  ELSE
+    SET @FirstName = @FullName
+  ENDIF
+]%% 	
+  
+ <strong>%%=ProperCase(@FirstName)=%%</strong> // Place this snippt where you want the First Name to appear.
+ 
+ </body>
+</html>
